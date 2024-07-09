@@ -1,16 +1,20 @@
 import { FormikHelpers, useFormik } from "formik";
-import { loginFormSchema } from "../../schemas/loginFormSchema";
+import { loginFormSchema } from "../schemas/loginFormSchema";
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormValues {
   email: string;
   password: string;
 }
 
-const onSubmit = (values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
-  actions.resetForm();
-};
-
 const LoginForm: React.FC = () => {
+  const navigate = useNavigate();
+
+  const onSubmit = (values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
+    actions.resetForm();
+    navigate("/home");
+  };
+
   const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik<LoginFormValues>({
     initialValues: {
       email: "",
@@ -21,10 +25,10 @@ const LoginForm: React.FC = () => {
   });
 
   return (
-    <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
-      <form onSubmit={handleSubmit} className="space-y-6" action="#">
+    <div className="w-full max-w-md p-4 bg-none border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
+          <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Your email</label>
           <input
             value={values.email}
             onChange={handleChange}
@@ -34,16 +38,16 @@ const LoginForm: React.FC = () => {
             id="email"
             className={
               errors.email && touched.email
-                ? "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                ? "bg-none border-2 border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                : "bg-none border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             }
             placeholder="name@company.com"
             required
           />
-          {errors.email && touched.email && <p className="error text-red-500 text-xs pt-1">{errors.email}</p>}
+          {errors.email && touched.email && <p className="error text-red-600 font-bold text-xs pt-1">{errors.email}</p>}
         </div>
         <div>
-          <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
+          <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Your password</label>
           <input
             value={values.password}
             onChange={handleChange}
@@ -54,12 +58,12 @@ const LoginForm: React.FC = () => {
             placeholder="••••••••"
             className={
               errors.password && touched.password
-                ? "bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                : "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                ? "bg-gray-50 border-2 border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                : "bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             }
             required
           />
-          {errors.password && touched.password && <p className="error text-red-500 text-xs pt-1">{errors.password}</p>}
+          {errors.password && touched.password && <p className="error text-red-600 font-bold text-xs pt-1">{errors.password}</p>}
         </div>
         <div className="flex items-start">
           <div className="flex items-start">
@@ -69,10 +73,9 @@ const LoginForm: React.FC = () => {
                 type="checkbox"
                 value=""
                 className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                required
               />
             </div>
-            <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900">Remember me</label>
+            <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-400">Remember me</label>
           </div>
           <a href="#" className="ms-auto text-sm text-blue-700 hover:underline">Lost Password?</a>
         </div>
@@ -83,7 +86,7 @@ const LoginForm: React.FC = () => {
         >
           Login
         </button>
-        <div className="text-sm font-medium text-gray-500">
+        <div className="text-sm font-medium text-gray-400">
           Not registered? <a href="#" className="text-blue-700 hover:underline">Create account</a>
         </div>
       </form>
