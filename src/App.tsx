@@ -7,13 +7,14 @@ import CheckoutPage from './pages/CheckoutPage';
 import ConfirmationPage from './pages/ConfirmationPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import NotFoundPage from './pages/NotFoundPage';
+import GetStartedPage from './pages/GetStartedPage';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route index element={<HomePage />} />
+          <Route index element={<GetStartedPage />} />
           <Route path='/home' element={<HomePage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/admin' element={<AdminPage />} />
