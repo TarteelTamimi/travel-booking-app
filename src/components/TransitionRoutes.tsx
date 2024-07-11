@@ -23,7 +23,7 @@ const TransitionRoutes = () => {
           <Route path='/home' element={<HomePage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/admin' element={<AdminPage />} />
-          <Route path='/hotel' element={<HotelPage />} />
+          <Route path='/hotels/:id' element={<HotelPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />
           <Route path='/confirmation' element={<ConfirmationPage />} />
           <Route path='/search-results' element={<SearchResultsPage />} />
