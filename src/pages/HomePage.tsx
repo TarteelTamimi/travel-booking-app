@@ -5,19 +5,19 @@ import TrendingDestinations from "../components/TrendingDestinations"
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="bg-gray-200">
       <Navbar />
       <div className="flex flex-col justify-center p-10">
         <SearchBox />
         <div className="">
-          <h2>Featured Deals</h2>
+          <h2 className="text-4xl pt-5 pb-5 font-bold">Featured Deals</h2>
           <FeaturedDeals />
         </div>
         <div className="">
-          <h2>Recently Visited Hotels</h2>
+          <h2 className="text-4xl pt-5 pb-5 font-bold">Recently Visited Hotels</h2>
         </div>
         <div className="">
-          <h2>Trending Destinations</h2>
+          <h2 className="text-4xl pt-5 pb-5 font-bold">Trending Destinations</h2>
           <TrendingDestinations />
         </div>
       </div>
