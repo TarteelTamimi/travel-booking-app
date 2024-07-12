@@ -7,16 +7,16 @@ const HomePage = () => {
   return (
     <div className="bg-gray-200">
       <Navbar />
-      <div className="flex flex-col justify-center p-10">
+      <div className="flex flex-col justify-center p-10 ">
         <SearchBox />
-        <div className="">
+        <div className="mb-10">
           <h2 className="text-4xl pt-5 pb-5 font-bold">Featured Deals</h2>
           <FeaturedDeals />
         </div>
-        <div className="">
+        <div className="mb-10">
           <h2 className="text-4xl pt-5 pb-5 font-bold">Recently Visited Hotels</h2>
         </div>
-        <div className="">
+        <div className="mb-10">
           <h2 className="text-4xl pt-5 pb-5 font-bold">Trending Destinations</h2>
           <TrendingDestinations />
         </div>

@@ -1,23 +1,39 @@
-import { useState } from "react"
-import { api } from "../services/api"
 import FeaturedDealsCard from "./FeaturedDealsCard";
+import { useFetchFeaturedDeals } from "../hooks/useFetchFeaturedDeals.hook";
+import { FiAlertTriangle } from "react-icons/fi";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const FeaturedDeals = () => {
-  const [featuredDeals, setFeaturedDeals] = useState([]);
+  const { featuredDeals, error } = useFetchFeaturedDeals();
 
-  api.get("/api/home/featured-deals")
-    .then(res => {
-      setFeaturedDeals(res.data);
-    })
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
 
   return (
-    <div className="flex">
-      {featuredDeals.map((deal: any) => (
-        <div key={deal.id}>
-          <FeaturedDealsCard {...deal} />
-        </div>
-      ))}
-    </div>
+    <>
+      {
+        error
+          ? <div className='flex justify-center items-center text-red-600'>
+            <FiAlertTriangle />
+            <span className="pl-2">Failed to fetch Features Deals</span>
+          </div>
+
+          : (<Slider {...settings}>
+            {featuredDeals.map((deal: any) => (
+              <div key={deal.id}>
+                <FeaturedDealsCard {...deal} />
+              </div>
+            ))}
+          </Slider>)
+      }
+    </>
   )
 }
 
