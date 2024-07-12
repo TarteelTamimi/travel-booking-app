@@ -1,22 +1,12 @@
-import { useEffect, useState } from "react";
-import { api } from "../services/api";
 import TrendingDestinationsCard from "./TrendingDestinationsCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { FiAlertTriangle } from "react-icons/fi";
+import { useFetchTrendingDestinations } from "../hooks/useFetchTrendingDestinations.hook";
 
 const TrendingDestinations = () => {
-  const [trendingDestinations, setTrendingDestinations] = useState([]);
-
-  useEffect(() => {
-    api.get("/api/home/destinations/trending")
-      .then(res => {
-        setTrendingDestinations(res.data);
-      })
-      .catch(err => {
-        console.error("Failed to fetch trending destinations:", err);
-      });
-  }, []);
+  const { trendingDestinations, error } = useFetchTrendingDestinations();
 
   const settings = {
     dots: true,
@@ -27,13 +17,22 @@ const TrendingDestinations = () => {
   };
 
   return (
-    <Slider {...settings}>
-      {trendingDestinations.map((deal: any) => (
-        <div key={deal.id}>
-          <TrendingDestinationsCard {...deal} />
-        </div>
-      ))}
-    </Slider>
+    <>
+      {
+        error
+          ? <div className='flex justify-center items-center text-red-600'>
+              <FiAlertTriangle />
+              <span className="pl-2">Failed to fetch Trending Destinations</span>
+            </div>
+          : (<Slider {...settings}>
+            {trendingDestinations.map((deal: any) => (
+              <div key={deal.id}>
+                <TrendingDestinationsCard {...deal} />
+              </div>
+            ))}
+          </Slider>)
+      }
+    </>
   )
 }
 
