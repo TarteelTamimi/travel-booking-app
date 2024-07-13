@@ -4,7 +4,7 @@ const TrendingDestinationsCard = (props: Any) => {
   const { cityId, cityName, countryName, description, thumbnailUrl } = props;
 
   return (
-    <div className="w-10/12 border h-[460px] rounded-2xl bg-white">
+    <div className="w-10/12 border h-[460px] rounded-2xl bg-white shadow">
       <img className="rounded-t-2xl w-full h-[220px]" src={thumbnailUrl} alt="Room Photo" />
       <div className="p-5">
         <h5 className="pl-1 text-2xl font-bold tracking-tight text-gray-900">{cityName}</h5>

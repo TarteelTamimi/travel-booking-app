@@ -1,16 +1,21 @@
 import { IoLocationOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { MdStarRate } from "react-icons/md";
 
 const FeaturedDealsCard = (props: Any) => {
-  const { hotelId, originalRoomPrice, discount, finalPrice, cityName, hotelName, hotelStarRating, title, description, roomPhotoUrl } = props;
+  const { hotelId, originalRoomPrice, finalPrice, cityName, hotelName, hotelStarRating, title, roomPhotoUrl } = props;
   const navigate = useNavigate();
-  const handleBuyNow = () => {
+
+  const handleBuyNow = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    event.stopPropagation();
     navigate(`/checkout`);
   }
 
+  const handleCardClick = () => {
+    navigate(`/hotels/${hotelId}`);
+  }
+
   return (
-    <div className="relative w-10/12 border h-[440px] rounded-2xl bg-white">
+    <div onClick={handleCardClick} className="relative w-10/12 border h-[440px] rounded-2xl bg-white cursor-pointer shadow">
       <img className="rounded-t-2xl w-full h-[220px]" src={roomPhotoUrl} alt="Room Photo" />
       <div className="p-5">
         <h5 className="pl-1 text-2xl font-bold tracking-tight text-gray-900">{title}</h5>

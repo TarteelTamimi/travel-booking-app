@@ -25,7 +25,7 @@ const FeaturedDeals = () => {
             <span className="pl-2">Failed to fetch Features Deals</span>
           </div>
 
-          : (<Slider {...settings}>
+          : (<Slider {...settings} >
             {featuredDeals.map((deal: any) => (
               <div key={deal.id}>
                 <FeaturedDealsCard {...deal} />
