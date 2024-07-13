@@ -1,7 +1,8 @@
 import { IoLocationOutline } from "react-icons/io5";
+import { TrendingDestinationsModel } from "../models/TrendingDestinations";
 
-const TrendingDestinationsCard = (props: Any) => {
-  const { cityId, cityName, countryName, description, thumbnailUrl } = props;
+const TrendingDestinationsCard = (props: TrendingDestinationsModel) => {
+  const { cityName, countryName, description, thumbnailUrl } = props;
 
   return (
     <div className="w-10/12 border h-[460px] rounded-2xl bg-white shadow">

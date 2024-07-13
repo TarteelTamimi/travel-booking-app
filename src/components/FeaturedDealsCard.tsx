@@ -1,7 +1,8 @@
 import { IoLocationOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { FeaturedDealsModel } from "../models/FeaturedDeals";
 
-const FeaturedDealsCard = (props: Any) => {
+const FeaturedDealsCard = (props: FeaturedDealsModel) => {
   const { hotelId, originalRoomPrice, finalPrice, cityName, hotelName, hotelStarRating, title, roomPhotoUrl } = props;
   const navigate = useNavigate();
 

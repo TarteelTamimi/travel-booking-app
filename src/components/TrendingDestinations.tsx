@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FiAlertTriangle } from "react-icons/fi";
 import { useFetchTrendingDestinations } from "../hooks/useFetchTrendingDestinations.hook";
+import { TrendingDestinationsModel } from "../models/TrendingDestinations";
 
 const TrendingDestinations = () => {
   const { trendingDestinations, error } = useFetchTrendingDestinations();
@@ -25,9 +26,9 @@ const TrendingDestinations = () => {
               <span className="pl-2">Failed to fetch Trending Destinations</span>
             </div>
           : (<Slider {...settings}>
-            {trendingDestinations.map((deal: any) => (
-              <div key={deal.id}>
-                <TrendingDestinationsCard {...deal} />
+            {trendingDestinations.map((city: TrendingDestinationsModel) => (
+              <div key={city.cityId}>
+                <TrendingDestinationsCard {...city} />
               </div>
             ))}
           </Slider>)

@@ -4,6 +4,7 @@ import { FiAlertTriangle } from "react-icons/fi";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { FeaturedDealsModel } from "../models/FeaturedDeals";
 
 const FeaturedDeals = () => {
   const { featuredDeals, error } = useFetchFeaturedDeals();
@@ -26,8 +27,8 @@ const FeaturedDeals = () => {
           </div>
 
           : (<Slider {...settings} >
-            {featuredDeals.map((deal: any) => (
-              <div key={deal.id}>
+            {featuredDeals.map((deal: FeaturedDealsModel) => (
+              <div key={deal.hotelId}>
                 <FeaturedDealsCard {...deal} />
               </div>
             ))}
