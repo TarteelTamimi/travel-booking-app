@@ -9,7 +9,7 @@ const HomePage = () => {
       <Navbar />
       <div className="flex flex-col justify-center p-10 ">
         <SearchBox />
-        <div className="mb-10">
+        <div className="mb-10 mt-28">
           <h2 className="text-4xl pt-5 pb-5 font-bold">Featured Deals</h2>
           <FeaturedDeals />
         </div>
