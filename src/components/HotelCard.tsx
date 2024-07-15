@@ -7,7 +7,7 @@ const HotelCard = (props: HotelModel) => {
   const [imageURL, setImageURL] = useState<string>('');
 
   useEffect(() => {
-    api.get(`/api/hotels/${id}/gallery`)
+    api.get(`/hotels/${id}/gallery`)
       .then(res => (res.data))
       .then(data => {
         setImageURL(data[0].url);
