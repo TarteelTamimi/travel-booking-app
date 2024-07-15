@@ -1,6 +1,7 @@
 import HomePage from './HomePage';
 import LoginPage from './LoginPage';
 import AdminPage from './AdminPage';
+import HotelsPage from './HotelsPage';
 import HotelPage from './HotelPage';
 import CheckoutPage from './CheckoutPage';
 import ConfirmationPage from './ConfirmationPage';
@@ -12,10 +13,11 @@ export {
   HomePage,
   LoginPage,
   AdminPage,
+  HotelsPage,
   HotelPage,
   CheckoutPage,
   ConfirmationPage,
   SearchResultsPage,
   NotFoundPage,
-  GetStartedPage
+  GetStartedPage,
 };

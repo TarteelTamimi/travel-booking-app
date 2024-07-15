@@ -1,10 +1,9 @@
 export type HotelModel = {
-  type: string;
-  title: string;
-  status: number;
-  detail: string;
-  instance: string;
-  additionalProp1: string;
-  additionalProp2: string;
-  additionalProp3: string;
+  id: number;
+  name: string;
+  description: string;
+  hotelType: number;
+  starRating: number;
+  latitude: number;
+  longitude: number;
 }

@@ -5,11 +5,12 @@ import {
   LoginPage,
   AdminPage,
   HotelPage,
+  HotelsPage,
   CheckoutPage,
   ConfirmationPage,
   SearchResultsPage,
   NotFoundPage,
-  GetStartedPage
+  GetStartedPage,
 } from '../pages/index';
 
 const TransitionRoutes = () => {
@@ -23,6 +24,7 @@ const TransitionRoutes = () => {
           <Route path='/home' element={<HomePage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/admin' element={<AdminPage />} />
+          <Route path='/hotels' element={<HotelsPage />} />
           <Route path='/hotels/:id' element={<HotelPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />
           <Route path='/confirmation' element={<ConfirmationPage />} />

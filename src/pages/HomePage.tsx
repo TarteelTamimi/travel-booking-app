@@ -10,14 +10,14 @@ const HomePage = () => {
       <div className="flex flex-col justify-center p-10 ">
         <SearchBox />
         <div className="mb-10 mt-28">
-          <h2 className="text-4xl pt-5 pb-5 font-bold">Featured Deals</h2>
+          <h3 className="text-4xl pt-5 pb-5 font-bold">Featured Deals</h3>
           <FeaturedDeals />
         </div>
         <div className="mb-10">
-          <h2 className="text-4xl pt-5 pb-5 font-bold">Recently Visited Hotels</h2>
+          <h3 className="text-4xl pt-5 pb-5 font-bold">Recently Visited Hotels</h3>
         </div>
         <div className="mb-10">
-          <h2 className="text-4xl pt-5 pb-5 font-bold">Trending Destinations</h2>
+          <h3 className="text-4xl pt-5 pb-5 font-bold">Trending Destinations</h3>
           <TrendingDestinations />
         </div>
       </div>
