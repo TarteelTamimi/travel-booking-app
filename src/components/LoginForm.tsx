@@ -1,23 +1,23 @@
 import { FormikHelpers, useFormik } from "formik";
 import { loginFormSchema } from "../schemas/loginFormSchema";
 import { useNavigate } from "react-router-dom";
+import { LoginFormValues } from "../models/LoginFormValues";
+import { login } from "../services/login";
 
-interface LoginFormValues {
-  email: string;
-  password: string;
-}
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
 
-  const onSubmit = (values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
+  const onSubmit = async(values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
     actions.resetForm();
+    const data = await login(values.username, values.password);
+    localStorage.setItem('token', data.authentication);
     navigate("/home");
   };
 
   const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik<LoginFormValues>({
     initialValues: {
-      email: "",
+      username: "",
       password: "",
     },
     validationSchema: loginFormSchema,
@@ -28,23 +28,22 @@ const LoginForm: React.FC = () => {
     <div className="w-full max-w-md p-4 bg-none border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Your email</label>
+          <label htmlFor="username" className="block mb-2 text-sm font-medium text-white">Your username</label>
           <input
-            value={values.email}
+            value={values.username}
             onChange={handleChange}
             onBlur={handleBlur}
-            type="email"
-            name="email"
-            id="email"
+            name="username"
+            id="username"
             className={
-              errors.email && touched.email
+              errors.username && touched.username
                 ? "bg-none border-2 border-red-500 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                 : "bg-none border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             }
-            placeholder="name@company.com"
+            placeholder="username"
             required
           />
-          {errors.email && touched.email && <p className="error text-red-600 font-bold text-xs pt-1">{errors.email}</p>}
+          {errors.username && touched.username && <p className="error text-red-600 font-bold text-xs pt-1">{errors.username}</p>}
         </div>
         <div>
           <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Your password</label>
