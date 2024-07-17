@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { HotelModel } from "../models/Hotel"
 import { api } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const HotelCard = (props: HotelModel) => {
   const { id, name, description, hotelType, starRating } = props;
   const [imageURL, setImageURL] = useState<string>('');
+  const navigate = useNavigate();
+
+  const handleShowHotel = () => {
+    navigate(`/hotels/${id}`);
+  }
 
   useEffect(() => {
     api.get(`/hotels/${id}/gallery`)
@@ -15,7 +21,7 @@ const HotelCard = (props: HotelModel) => {
   }, [id])
 
   return (
-    <a href="#" className="relative flex flex-col mb-5 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100">
+    <a onClick={handleShowHotel} className="relative flex flex-col mb-5 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 cursor-pointer">
       <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={imageURL} alt="" />
       <div className="flex flex-col px-4 leading-normal">
         <div className="flex text-xl mx-3 my-8">
