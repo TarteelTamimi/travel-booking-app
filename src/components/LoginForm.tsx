@@ -3,18 +3,19 @@ import { loginFormSchema } from "../schemas/loginFormSchema";
 import { useNavigate } from "react-router-dom";
 import { LoginFormValues } from "../models/LoginFormValues";
 import { login } from "../services/login";
+import { UserInPropsModel } from "../models/userInProps";
 
-
-const LoginForm: React.FC = (setUserIn: any) => {
+const LoginForm: React.FC<UserInPropsModel> = ({ userIn, setUserIn }) => {
   const navigate = useNavigate();
 
-  const onSubmit = async(values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
+  const onSubmit = async (values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
     actions.resetForm();
     const data = await login(values.username, values.password);
     localStorage.setItem('token', data.authentication);
-    navigate("/home");
+    console.log(userIn);
     setUserIn(true);
-  };
+    navigate("/home");
+  }
 
   const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik<LoginFormValues>({
     initialValues: {

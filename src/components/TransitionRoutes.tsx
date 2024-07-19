@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 
 const TransitionRoutes = () => {
   const location = useLocation();
-  const [userIn, setUserIn] = useState(localStorage.getItem("token") || false);
+  const [userIn, setUserIn] = useState<string | boolean>(localStorage.getItem("token") || false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -25,7 +25,7 @@ const TransitionRoutes = () => {
     }
   }, [])
 
-  const ProtectedRoutes = () => {
+  const ProtectedRoutes = () => {    
     return userIn ? <Outlet /> : <Navigate to="/login" />
   }
 
@@ -34,7 +34,7 @@ const TransitionRoutes = () => {
       <CSSTransition key={location.key} classNames="fade" timeout={600}>
         <Routes location={location}>
           <Route index element={<GetStartedPage />} />
-          <Route path='/login' element={<LoginPage setUserIn={setUserIn} />} />
+          <Route path='/login' element={<LoginPage userIn={userIn} setUserIn={setUserIn} />} />
           <Route element={<ProtectedRoutes />}>
             <Route path='/home' element={<HomePage />} />
             <Route path='/admin' element={<AdminPage />} />
