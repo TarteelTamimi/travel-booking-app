@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Outlet, Navigate } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import {
   HomePage,
@@ -12,23 +12,38 @@ import {
   NotFoundPage,
   GetStartedPage,
 } from '../pages/index';
+import { useEffect, useState } from 'react';
 
 const TransitionRoutes = () => {
   const location = useLocation();
+  const [userIn, setUserIn] = useState(localStorage.getItem("token") || false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUserIn(true);
+    }
+  }, [])
+
+  const ProtectedRoutes = () => {
+    return userIn ? <Outlet /> : <Navigate to="/login" />
+  }
 
   return (
     <TransitionGroup>
       <CSSTransition key={location.key} classNames="fade" timeout={600}>
         <Routes location={location}>
           <Route index element={<GetStartedPage />} />
-          <Route path='/home' element={<HomePage />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/admin' element={<AdminPage />} />
-          <Route path='/hotels' element={<HotelsPage />} />
-          <Route path='/hotels/:id' element={<HotelPage />} />
-          <Route path='/checkout' element={<CheckoutPage />} />
-          <Route path='/confirmation' element={<ConfirmationPage />} />
-          <Route path='/search-results' element={<SearchResultsPage />} />
+          <Route path='/login' element={<LoginPage setUserIn={setUserIn} />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path='/home' element={<HomePage />} />
+            <Route path='/admin' element={<AdminPage />} />
+            <Route path='/hotels' element={<HotelsPage />} />
+            <Route path='/hotels/:id' element={<HotelPage />} />
+            <Route path='/checkout' element={<CheckoutPage />} />
+            <Route path='/confirmation' element={<ConfirmationPage />} />
+            <Route path='/search-results' element={<SearchResultsPage />} />
+          </Route>
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </CSSTransition>

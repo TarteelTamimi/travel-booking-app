@@ -5,7 +5,7 @@ import { LoginFormValues } from "../models/LoginFormValues";
 import { login } from "../services/login";
 
 
-const LoginForm: React.FC = () => {
+const LoginForm: React.FC = (setUserIn: any) => {
   const navigate = useNavigate();
 
   const onSubmit = async(values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
@@ -13,6 +13,7 @@ const LoginForm: React.FC = () => {
     const data = await login(values.username, values.password);
     localStorage.setItem('token', data.authentication);
     navigate("/home");
+    setUserIn(true);
   };
 
   const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik<LoginFormValues>({

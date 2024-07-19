@@ -22,8 +22,7 @@ const HotelPage = () => {
     api.get(`/hotels/${id}`)
       .then(res => res.data)
       .then(data => {
-        // setHotel(data);
-        console.log(data)        
+        setHotel(data);      
       })
   }, [id]);
 
