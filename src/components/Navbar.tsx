@@ -1,11 +1,55 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 const Navbar = () => {
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate("/login");
+  }
+
   return (
     <nav className="bg-blue-700 border-gray-200">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pr-40">
         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://img.icons8.com/?size=100&id=10860&format=png&color=FFFFFF" className="h-8" alt="Flowbite Logo" />
           <span className="self-center text-white text-2xl font-semibold whitespace-nowrap">HOTEL</span>
         </a>
+        <button
+          id="dropdownUserAvatarButton"
+          onClick={toggleDropdown}
+          className="flex absolute right-24 text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300"
+          type="button"
+        >
+          <span className="sr-only">Open user menu</span>
+          <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full">
+            <svg className="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+          </div>
+        </button>
+        {isDropdownVisible && (
+          <div id="dropdownAvatar" className="absolute right-7 top-16 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+            <div className="px-4 py-3 text-sm text-gray-900">
+              <div className="font-bold">User Name</div>
+            </div>
+            <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownUserAvatarButton">
+              <li>
+                <a href="#" className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Profile</a>
+              </li>
+              <li>
+                <a href="#" className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Settings</a>
+              </li>
+            </ul>
+            <div className="py-2">
+              <a onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Logout</a>
+            </div>
+          </div>
+        )}
         <div className="flex md:order-2">
           <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" className="md:hidden text-gray-500 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 me-1">
             <svg className="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -49,7 +93,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
