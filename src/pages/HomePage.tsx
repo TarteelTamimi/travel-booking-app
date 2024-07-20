@@ -1,12 +1,10 @@
-import FeaturedDeals from "../components/FeaturedDeals"
-import Navbar from "../components/Navbar"
-import SearchBox from "../components/SearchBox"
-import TrendingDestinations from "../components/TrendingDestinations"
+import FeaturedDeals from "../components/FeaturedDeals";
+import SearchBox from "../components/SearchBox";
+import TrendingDestinations from "../components/TrendingDestinations";
 
 const HomePage = () => {
   return (
     <div className="bg-gray-200">
-      <Navbar />
       <div className="flex flex-col justify-center p-10 ">
         <SearchBox />
         <div className="mb-10 mt-28">

@@ -3,17 +3,19 @@ import { loginFormSchema } from "../schemas/loginFormSchema";
 import { useNavigate } from "react-router-dom";
 import { LoginFormValues } from "../models/LoginFormValues";
 import { login } from "../services/login";
-import { UserInPropsModel } from "../models/UserInProps";
+import { UserInPropsModel } from "../models/UserProps";
 import { toast } from "react-toastify";
 
-const LoginForm: React.FC<UserInPropsModel> = ({ setUserIn }) => {
+const LoginForm: React.FC<UserInPropsModel> = ({ setUserIn, setUserRole }) => {
   const navigate = useNavigate();
 
   const onSubmit = async (values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
     try {
       const user = await login(values.username, values.password);
       localStorage.setItem('token', user.authentication);
+      localStorage.setItem('role', user.userType);
       setUserIn(true);
+      setUserRole(user.userType)
       actions.resetForm();
       navigate("/home");
       toast.success("Login Successfully", {

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { UserInPropsModel } from "../models/UserProps";
 
-const Navbar = () => {
+const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const navigate = useNavigate();
 
@@ -12,6 +13,9 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    setUserIn(false);
+    setUserRole(null);
     navigate("/login");
     toast.success("Logout Successfully", {
       position: "top-center",
@@ -88,11 +92,16 @@ const Navbar = () => {
           </div>
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-blue-700 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-blue-700">
             <li>
-              <a href="#" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Home</a>
+              <a href="/home" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Home</a>
             </li>
             <li>
               <a href="/hotels" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Hotels</a>
             </li>
+            {userRole === 'Admin' && (
+              <li>
+                <a href="/admin" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Dashboard</a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
