@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -12,6 +13,9 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate("/login");
+    toast.success("Logout Successfully", {
+      position: "top-center",
+    });
   }
 
   return (

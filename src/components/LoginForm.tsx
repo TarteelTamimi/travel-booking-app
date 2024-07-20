@@ -3,18 +3,34 @@ import { loginFormSchema } from "../schemas/loginFormSchema";
 import { useNavigate } from "react-router-dom";
 import { LoginFormValues } from "../models/LoginFormValues";
 import { login } from "../services/login";
-import { UserInPropsModel } from "../models/userInProps";
+import { UserInPropsModel } from "../models/UserInProps";
+import { toast } from "react-toastify";
 
-const LoginForm: React.FC<UserInPropsModel> = ({ userIn, setUserIn }) => {
+const LoginForm: React.FC<UserInPropsModel> = ({ setUserIn }) => {
   const navigate = useNavigate();
 
   const onSubmit = async (values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
-    actions.resetForm();
-    const data = await login(values.username, values.password);
-    localStorage.setItem('token', data.authentication);
-    console.log(userIn);
-    setUserIn(true);
-    navigate("/home");
+    try {
+      const user = await login(values.username, values.password);
+      localStorage.setItem('token', user.authentication);
+      setUserIn(true);
+      actions.resetForm();
+      navigate("/home");
+      toast.success("Login Successfully", {
+        position: "top-center",
+      });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error.response.status === 401) {
+        toast.error("Login Failed. Check your username or password", {
+          position: "top-center",
+        });
+      } else {
+        toast.error("Something Went Wrong", {
+          position: "top-center",
+        });
+      }
+    }
   }
 
   const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik<LoginFormValues>({

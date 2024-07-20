@@ -1,6 +1,6 @@
 import LoginForm from "../components/LoginForm";
 import bg from "../assets/herosection-bg-image.jpg";
-import { UserInPropsModel } from "../models/userInProps";
+import { UserInPropsModel } from "../models/UserInProps";
 
 const LoginPage: React.FC<UserInPropsModel> = ({ userIn, setUserIn }) => {
   return (
