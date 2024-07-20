@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { HotelModel } from "../models/Hotel"
+import { HotelModel } from "../models/Hotel";
 import { api } from "../services/api";
 
 const HotelInfo = (props: HotelModel) => {
-  const { id, name, description, hotelType, starRating, latitude, longitude } = props;
+  const { id, name, description, hotelType, starRating } = props;
   const [imageURL, setImageURL] = useState<string>('');
 
   useEffect(() => {
@@ -24,4 +24,4 @@ const HotelInfo = (props: HotelModel) => {
   )
 }
 
-export default HotelInfo
+export default HotelInfo;
