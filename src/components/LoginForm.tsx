@@ -5,11 +5,14 @@ import { LoginFormValues } from "../models/LoginFormValues";
 import { login } from "../services/login";
 import { UserInPropsModel } from "../models/UserProps";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const LoginForm: React.FC<UserInPropsModel> = ({ setUserIn, setUserRole }) => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (values: LoginFormValues, actions: FormikHelpers<LoginFormValues>) => {
+    setLoading(true);
     try {
       const user = await login(values.username, values.password);
       localStorage.setItem('token', user.authentication);
@@ -17,13 +20,13 @@ const LoginForm: React.FC<UserInPropsModel> = ({ setUserIn, setUserRole }) => {
       localStorage.setItem('username', values.username);
       localStorage.setItem('password', values.password);
       setUserIn(true);
-      setUserRole(user.userType)
+      setUserRole(user.userType);
       actions.resetForm();
       navigate("/home");
       toast.success("Login Successfully", {
         position: "top-center",
       });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response.status === 401) {
         toast.error("Login Failed. Check your username or password", {
@@ -34,6 +37,8 @@ const LoginForm: React.FC<UserInPropsModel> = ({ setUserIn, setUserRole }) => {
           position: "top-center",
         });
       }
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -103,9 +108,11 @@ const LoginForm: React.FC<UserInPropsModel> = ({ setUserIn, setUserRole }) => {
         <button
           disabled={isSubmitting}
           type="submit"
-          className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          className={!loading
+            ? "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            : "w-full text-white bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-default"}
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
         <div className="text-sm font-medium text-gray-400">
           Not registered? <a href="#" className="text-blue-700 hover:underline">Create account</a>
