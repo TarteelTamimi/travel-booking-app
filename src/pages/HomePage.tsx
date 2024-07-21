@@ -1,4 +1,5 @@
 import FeaturedDeals from "../components/FeaturedDeals";
+import RecentlyVisited from "../components/RecentlyVisited";
 import SearchBox from "../components/SearchBox";
 import TrendingDestinations from "../components/TrendingDestinations";
 
@@ -13,6 +14,7 @@ const HomePage = () => {
         </div>
         <div className="mb-10">
           <h3 className="text-4xl pt-5 pb-5 font-bold">Recently Visited Hotels</h3>
+          <RecentlyVisited />
         </div>
         <div className="mb-10">
           <h3 className="text-4xl pt-5 pb-5 font-bold">Trending Destinations</h3>

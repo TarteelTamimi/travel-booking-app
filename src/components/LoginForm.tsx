@@ -14,6 +14,8 @@ const LoginForm: React.FC<UserInPropsModel> = ({ setUserIn, setUserRole }) => {
       const user = await login(values.username, values.password);
       localStorage.setItem('token', user.authentication);
       localStorage.setItem('role', user.userType);
+      localStorage.setItem('username', values.username);
+      localStorage.setItem('password', values.password);
       setUserIn(true);
       setUserRole(user.userType)
       actions.resetForm();
