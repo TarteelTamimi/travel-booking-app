@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { api } from "../services/api";
 import { useEffect, useState } from "react";
-import HotelInfo from "../components/HotelInfo";
+import HotelInfo from "../components/Hotels/HotelInfo";
 import { HotelModel } from "../models/Hotel";
-import Map from "../components/Map";
+import Map from "../components/Hotels/Map";
 
 const HotelPage = () => {
   const initialHotel: HotelModel = {

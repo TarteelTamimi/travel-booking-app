@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { RecentlyVisitedModel } from "../models/RecentlyVisited";
+import { RecentlyVisitedModel } from "../../models/RecentlyVisited";
 import { IoLocationOutline } from "react-icons/io5";
 import moment from "moment";
 

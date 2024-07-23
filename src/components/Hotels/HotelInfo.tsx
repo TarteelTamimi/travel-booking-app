@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { HotelModel } from "../models/Hotel";
-import { api } from "../services/api";
+import { HotelModel } from "../../models/Hotel";
+import { api } from "../../services/api";
 
 const HotelInfo = (props: HotelModel) => {
   const { id, name, description, hotelType, starRating } = props;

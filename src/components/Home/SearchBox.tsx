@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useFetchCities } from "../hooks/useFetchCities.hook";
-import { CityModel } from "../models/City";
+import { useFetchCities } from "../../hooks/useFetchCities.hook";
+import { CityModel } from "../../models/City";
 import { IoLocationOutline } from "react-icons/io5";
 
 const SearchBox = () => {

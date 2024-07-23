@@ -3,8 +3,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { FiAlertTriangle } from "react-icons/fi";
-import { useFetchTrendingDestinations } from "../hooks/useFetchTrendingDestinations.hook";
-import { TrendingDestinationsModel } from "../models/TrendingDestinations";
+import { useFetchTrendingDestinations } from "../../hooks/useFetchTrendingDestinations.hook";
+import { TrendingDestinationsModel } from "../../models/TrendingDestinations";
 
 const TrendingDestinations = () => {
   const { trendingDestinations, error } = useFetchTrendingDestinations();

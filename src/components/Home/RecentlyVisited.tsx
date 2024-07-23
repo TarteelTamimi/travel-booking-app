@@ -2,9 +2,9 @@ import { FiAlertTriangle } from "react-icons/fi";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { useFetchRecentlyVisited } from "../hooks/useFetchRecentlyVisited.hook";
+import { useFetchRecentlyVisited } from "../../hooks/useFetchRecentlyVisited.hook";
 import RecentlyVisitedCard from "./RecentlyVisitedCard";
-import { RecentlyVisitedModel } from "../models/RecentlyVisited";
+import { RecentlyVisitedModel } from "../../models/RecentlyVisited";
 
 const RecentlyVisited = () => {
   const userId = 1;

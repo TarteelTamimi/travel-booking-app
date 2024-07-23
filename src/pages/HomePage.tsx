@@ -1,7 +1,7 @@
-import FeaturedDeals from "../components/FeaturedDeals";
-import RecentlyVisited from "../components/RecentlyVisited";
-import SearchBox from "../components/SearchBox";
-import TrendingDestinations from "../components/TrendingDestinations";
+import FeaturedDeals from "../components/Home/FeaturedDeals";
+import RecentlyVisited from "../components/Home/RecentlyVisited";
+import SearchBox from "../components/Home/SearchBox";
+import TrendingDestinations from "../components/Home/TrendingDestinations";
 
 const HomePage = () => {
   return (

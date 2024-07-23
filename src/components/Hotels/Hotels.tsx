@@ -1,6 +1,6 @@
 import { FiAlertTriangle } from "react-icons/fi";
-import { useFetchHotels } from "../hooks/useFetchHotels.hook";
-import { HotelModel } from "../models/Hotel";
+import { useFetchHotels } from "../../hooks/useFetchHotels.hook";
+import { HotelModel } from "../../models/Hotel";
 import HotelCard from "./HotelCard";
 
 const Hotels = () => {

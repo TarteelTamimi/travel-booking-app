@@ -1,5 +1,5 @@
 import { IoLocationOutline } from "react-icons/io5";
-import { TrendingDestinationsModel } from "../models/TrendingDestinations";
+import { TrendingDestinationsModel } from "../../models/TrendingDestinations";
 
 const TrendingDestinationsCard = (props: TrendingDestinationsModel) => {
   const { cityName, countryName, description, thumbnailUrl } = props;

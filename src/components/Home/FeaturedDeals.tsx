@@ -1,10 +1,10 @@
 import FeaturedDealsCard from "./FeaturedDealsCard";
-import { useFetchFeaturedDeals } from "../hooks/useFetchFeaturedDeals.hook";
+import { useFetchFeaturedDeals } from "../../hooks/useFetchFeaturedDeals.hook";
 import { FiAlertTriangle } from "react-icons/fi";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { FeaturedDealsModel } from "../models/FeaturedDeals";
+import { FeaturedDealsModel } from "../../models/FeaturedDeals";
 
 const FeaturedDeals = () => {
   const { featuredDeals, error } = useFetchFeaturedDeals();

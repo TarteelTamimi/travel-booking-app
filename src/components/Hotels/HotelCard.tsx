@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { HotelModel } from "../models/Hotel";
-import { api } from "../services/api";
+import { HotelModel } from "../../models/Hotel";
+import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 
 const HotelCard = (props: HotelModel) => {
