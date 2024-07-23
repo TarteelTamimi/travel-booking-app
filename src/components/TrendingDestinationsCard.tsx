@@ -19,4 +19,4 @@ const TrendingDestinationsCard = (props: TrendingDestinationsModel) => {
   )
 }
 
-export default TrendingDestinationsCard
+export default TrendingDestinationsCard;

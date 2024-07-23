@@ -6,6 +6,6 @@ export const getHotels = async () => {
     return response.data;
   } catch (error) {
     console.error("Error Fetching Hotels");
-    throw(error);
+    throw (error);
   }
 };

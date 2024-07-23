@@ -1,4 +1,4 @@
-import Hotels from "../components/Hotels"
+import Hotels from "../components/Hotels";
 
 const HotelsPage = () => {
   return (
@@ -9,4 +9,4 @@ const HotelsPage = () => {
   )
 }
 
-export default HotelsPage
+export default HotelsPage;

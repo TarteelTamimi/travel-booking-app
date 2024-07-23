@@ -8,7 +8,7 @@ const FeaturedDealsCard = (props: FeaturedDealsModel) => {
 
   const handleBuyNow = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.stopPropagation();
-    navigate(`/checkout`);
+    navigate("/checkout");
   }
 
   const handleCardClick = () => {
@@ -43,4 +43,4 @@ const FeaturedDealsCard = (props: FeaturedDealsModel) => {
   )
 }
 
-export default FeaturedDealsCard
+export default FeaturedDealsCard;

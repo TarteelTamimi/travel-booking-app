@@ -8,8 +8,8 @@ import Map from "../components/Map";
 const HotelPage = () => {
   const initialHotel: HotelModel = {
     id: 0,
-    name: '',
-    description: '',
+    name: "",
+    description: "",
     hotelType: 0,
     starRating: 0,
     latitude: 0,
@@ -25,14 +25,14 @@ const HotelPage = () => {
       .then(data => {
         setHotel(data);
       })
-  }, [id]);
+  }, [id])
 
   return (
     <div>
       <HotelInfo {...hotel} />
-      <Map {...hotel}/>
+      <Map {...hotel} />
     </div>
   )
 }
 
-export default HotelPage
+export default HotelPage;

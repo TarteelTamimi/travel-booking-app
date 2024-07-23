@@ -6,7 +6,7 @@ import { IoLocationOutline } from "react-icons/io5";
 const SearchBox = () => {
   const { cities } = useFetchCities();
   const [filteredCities, setFilteredCities] = useState<CityModel[]>(cities);
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>("");
   const [showList, setShowList] = useState<boolean>(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ const SearchBox = () => {
   };
 
   const handleBlur = () => {
-    setTimeout(() => setShowList(false), 100);
+    setTimeout(() => setShowList(false), 1000);
   };
 
   const handleCityClick = (city: CityModel) => {
@@ -66,4 +66,4 @@ const SearchBox = () => {
   )
 }
 
-export default SearchBox
+export default SearchBox;

@@ -9,7 +9,7 @@ import { TrendingDestinationsModel } from "../models/TrendingDestinations";
 const TrendingDestinations = () => {
   const { trendingDestinations, error } = useFetchTrendingDestinations();
 
-  const settings = {
+  const sliderSettings = {
     dots: true,
     infinite: false,
     speed: 500,
@@ -21,11 +21,11 @@ const TrendingDestinations = () => {
     <>
       {
         error
-          ? <div className='flex justify-center items-center text-red-600'>
-              <FiAlertTriangle />
-              <span className="pl-2">Failed to fetch Trending Destinations</span>
-            </div>
-          : (<Slider {...settings}>
+          ? <div className="flex justify-center items-center text-red-600">
+            <FiAlertTriangle />
+            <span className="pl-2">Failed to fetch Trending Destinations</span>
+          </div>
+          : (<Slider {...sliderSettings}>
             {trendingDestinations.map((city: TrendingDestinationsModel) => (
               <div key={city.cityId}>
                 <TrendingDestinationsCard {...city} />
@@ -37,4 +37,4 @@ const TrendingDestinations = () => {
   )
 }
 
-export default TrendingDestinations
+export default TrendingDestinations;

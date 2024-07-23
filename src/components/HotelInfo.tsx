@@ -4,7 +4,7 @@ import { api } from "../services/api";
 
 const HotelInfo = (props: HotelModel) => {
   const { id, name, description, hotelType, starRating } = props;
-  const [imageURL, setImageURL] = useState<string>('');
+  const [imageURL, setImageURL] = useState<string>("");
 
   useEffect(() => {
     api.get(`/hotels/${id}/gallery`)
@@ -12,7 +12,7 @@ const HotelInfo = (props: HotelModel) => {
       .then(data => {
         setImageURL(data[0].url);
       })
-  }, [])
+  }, [id])
 
   return (
     <div className="">

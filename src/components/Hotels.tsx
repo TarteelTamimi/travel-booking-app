@@ -7,12 +7,12 @@ const Hotels = () => {
   const { hotels, loading, error } = useFetchHotels();
 
   if (loading) {
-    return <span className='hotel-page-loader'></span>
+    return <span className="hotel-page-loader"></span>
   }
 
   if (error) {
     return (
-      <div className='flex justify-center items-center text-red-600'>
+      <div className="flex justify-center items-center text-red-600">
         <FiAlertTriangle />
         <span className="pl-2">Failed to fetch Hotels</span>
       </div>
@@ -30,4 +30,4 @@ const Hotels = () => {
   )
 }
 
-export default Hotels
+export default Hotels;

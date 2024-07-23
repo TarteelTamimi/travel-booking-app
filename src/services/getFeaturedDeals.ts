@@ -6,6 +6,6 @@ export const getFeaturedDeals = async () => {
     return response.data;
   } catch (error) {
     console.error("Error Fetching Featured Deals");
-    throw(error);
+    throw (error);
   }
 };

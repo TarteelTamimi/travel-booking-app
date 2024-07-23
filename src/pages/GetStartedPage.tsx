@@ -1,11 +1,11 @@
-import GetStated from "../components/GetStarted"
+import GetStated from "../components/GetStarted";
 
 const GetStartedPage = () => {
   return (
     <div>
-      <GetStated/>
+      <GetStated />
     </div>
   )
 }
 
-export default GetStartedPage
+export default GetStartedPage;

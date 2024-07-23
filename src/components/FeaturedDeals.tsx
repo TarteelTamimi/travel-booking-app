@@ -9,7 +9,7 @@ import { FeaturedDealsModel } from "../models/FeaturedDeals";
 const FeaturedDeals = () => {
   const { featuredDeals, error } = useFetchFeaturedDeals();
 
-  const settings = {
+  const sliderSettings = {
     dots: true,
     infinite: false,
     speed: 500,
@@ -26,7 +26,7 @@ const FeaturedDeals = () => {
             <span className="pl-2">Failed to fetch Features Deals</span>
           </div>
 
-          : (<Slider {...settings} >
+          : (<Slider {...sliderSettings} >
             {featuredDeals.map((deal: FeaturedDealsModel) => (
               <div key={deal.hotelId}>
                 <FeaturedDealsCard {...deal} />
@@ -38,4 +38,4 @@ const FeaturedDeals = () => {
   )
 }
 
-export default FeaturedDeals
+export default FeaturedDeals;

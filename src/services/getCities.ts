@@ -6,6 +6,6 @@ export const getCities = async () => {
     return response.data;
   } catch (error) {
     console.error("Error Fetching Cities");
-    throw(error);
+    throw (error);
   }
 };

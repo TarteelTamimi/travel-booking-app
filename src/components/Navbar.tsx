@@ -12,8 +12,8 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
     setUserIn(false);
     setUserRole(null);
     navigate("/login");
@@ -25,7 +25,7 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
   return (
     <nav className="bg-blue-700 border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pr-40">
-        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="/home" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://img.icons8.com/?size=100&id=10860&format=png&color=FFFFFF" className="h-8" alt="Flowbite Logo" />
           <span className="self-center text-white text-2xl font-semibold whitespace-nowrap">HOTEL</span>
         </a>

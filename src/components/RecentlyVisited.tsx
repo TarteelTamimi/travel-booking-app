@@ -10,7 +10,7 @@ const RecentlyVisited = () => {
   const userId = 1;
   const { recentlyVisited, error } = useFetchRecentlyVisited(userId);
 
-  const settings = {
+  const sliderSettings = {
     dots: true,
     infinite: false,
     speed: 500,
@@ -27,7 +27,7 @@ const RecentlyVisited = () => {
             <span className="pl-2">Failed to fetch Recently Visited</span>
           </div>
 
-          : (<Slider {...settings} >
+          : (<Slider {...sliderSettings} >
             {recentlyVisited.map((hotel: RecentlyVisitedModel) => (
               <div key={hotel.hotelId}>
                 <RecentlyVisitedCard {...hotel} />
