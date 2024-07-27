@@ -26,7 +26,7 @@ const Map = (props: HotelModel) => {
   const { latitude, longitude } = props;
 
   return (
-    <div className="border-2 border-black h-[200px] w-[400px] rounded-lg m-2">
+    <div className="border border-gray-700 h-[200px] w-80 rounded-lg m-2">
       <MapContainer center={[latitude, longitude]} zoom={13} className="h-full w-full rounded-lg">
         <SetMapCenter latitude={latitude} longitude={longitude} />
         <TileLayer

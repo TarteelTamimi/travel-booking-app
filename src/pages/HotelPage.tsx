@@ -3,7 +3,6 @@ import { api } from "../services/api";
 import { useEffect, useState } from "react";
 import HotelInfo from "../components/Hotels/HotelInfo";
 import { HotelModel } from "../models/Hotel";
-import Map from "../components/Hotels/Map";
 
 const HotelPage = () => {
   const initialHotel: HotelModel = {
@@ -14,6 +13,7 @@ const HotelPage = () => {
     starRating: 0,
     latitude: 0,
     longitude: 0,
+    amenities: [],
   };
 
   const { id } = useParams();
@@ -24,13 +24,13 @@ const HotelPage = () => {
       .then(res => res.data)
       .then(data => {
         setHotel(data);
+        console.log(data);
       })
   }, [id])
 
   return (
     <div>
       <HotelInfo {...hotel} />
-      <Map {...hotel} />
     </div>
   )
 }
