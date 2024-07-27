@@ -35,7 +35,7 @@ const HotelInfo = (props: HotelModel) => {
           ))}
         </ul>
       </div>
-      <Map {...props}/>
+      <Map {...props} />
     </div>
   )
 }
