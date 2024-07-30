@@ -22,7 +22,7 @@ const HotelCard = (props: HotelModel) => {
 
   return (
     <a onClick={handleShowHotel} className="relative flex flex-col mb-5 bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 cursor-pointer">
-      <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={imageURL} alt="" />
+      <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={imageURL} alt="hotel photo" />
       <div className="flex flex-col px-4 leading-normal">
         <div className="flex text-xl mx-3 my-8">
           <h5 className="text-2xl font-bold tracking-tight text-gray-900">{name}</h5>

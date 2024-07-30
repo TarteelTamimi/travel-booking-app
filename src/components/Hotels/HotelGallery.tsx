@@ -37,14 +37,14 @@ const HotelGallery: React.FC = () => {
   return (
     <>
       {error ? (
-        <div className="absolute top-64 left-1/2 flex justify-center items-center text-red-600">
+        <div className="absolute top-64 left-1/3 flex justify-center items-center text-red-600">
           <FiAlertTriangle />
           <span className="pl-2">Failed to fetch hotel photos</span>
         </div>
       ) : (
-        <Slider {...sliderSettings} className="w-[68%] h-2/5 m-5">
+        <Slider {...sliderSettings} className="h-2/5 m-5">
           {photos.map((photo: HotelPhotoModel) => (
-            <div key={photo.id} onClick={() => openModal(photo)} className="border h-[300px] rounded-2xl bg-white shadow cursor-pointer">
+            <div key={photo.id} onClick={() => openModal(photo)} className="border h-[300px] bg-white shadow cursor-pointer rounded-sm">
               <img src={photo.url} alt="hotel photo" className="rounded-sm w-full h-full" />
             </div>
           ))}

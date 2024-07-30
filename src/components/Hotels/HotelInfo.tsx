@@ -8,7 +8,7 @@ const HotelInfo = (props: HotelModel) => {
   const { hotelName, description, amenities, location, starRating, imageUrl, availableRooms } = props;
 
   return (
-    <div className="flex flex-col justify-center items-center bg-white w-3/12 p-5 m-5 rounded-sm">
+    <div className="flex flex-col items-center bg-white w-3/12 h-fit p-5 m-5 rounded-sm">
       <img src={imageUrl} alt="hotel" className="w-72 h-72 rounded-lg" />
       <h3 className="font-bold text-2xl p-2">{hotelName}</h3>
       <div className="py-2">
