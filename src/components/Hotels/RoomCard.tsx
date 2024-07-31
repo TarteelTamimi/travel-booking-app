@@ -3,13 +3,23 @@ import { RoomModel } from "../../models/Room";
 import { BsPersonRaisedHand } from "react-icons/bs";
 import { FaDollarSign } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
+import { toast } from "react-toastify";
 
 const RoomCard = (props: RoomModel) => {
   const { roomId, roomNumber, roomType, roomPhotoUrl, price, capacityOfAdults, capacityOfChildren, roomAmenities, availability } = props;
   const navigate = useNavigate();
+  const { addToCart, removeFromCart } = useCart();
 
   const handleBuyNow = () => {
     navigate("/checkout");
+  }
+
+  const handleAddToCart = () => {
+    addToCart(props);
+    toast.success("Added Successfully", {
+      position: "top-center",
+    });
   }
 
   return (
@@ -55,8 +65,11 @@ const RoomCard = (props: RoomModel) => {
           <button onClick={handleBuyNow} className="absolute bottom-5 right-6 inline-flex items-center px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
             Buy Now
           </button>
-          <button className="absolute bottom-5 right-36 inline-flex items-center px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-            Add to Cart
+          <button
+            onClick={handleAddToCart}
+            className="absolute bottom-5 right-36 inline-flex items-center px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+          >
+            Add To Cart
           </button>
         </div>
       )}

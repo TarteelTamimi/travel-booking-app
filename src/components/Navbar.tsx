@@ -2,24 +2,49 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserInPropsModel } from "../models/UserProps";
+import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from "../context/CartContext";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [isCartVisible, setIsCartVisible] = useState(false);
   const navigate = useNavigate();
+  const { cartItems, removeFromCart, clearCart } = useCart();
+  const [isAnimatingOut, setIsAnimatingOut] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownVisible(!isDropdownVisible);
   }
 
+  const toggleCart = () => {
+    if (isCartVisible) {
+      setIsAnimatingOut(true);
+      setTimeout(() => {
+        setIsCartVisible(false);
+        setIsAnimatingOut(false);
+      }, 300);
+    } else {
+      setIsCartVisible(true);
+    }
+  }
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+    localStorage.removeItem("cartItems");
     setUserIn(false);
     setUserRole(null);
     navigate("/login");
     toast.success("Logout Successfully", {
       position: "top-center",
     });
+  }
+
+  const handleBuyNow = () => {
+    navigate("/checkout");
   }
 
   return (
@@ -29,6 +54,9 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
           <img src="https://img.icons8.com/?size=100&id=10860&format=png&color=FFFFFF" className="h-8" alt="Flowbite Logo" />
           <span className="self-center text-white text-2xl font-semibold whitespace-nowrap">HOTEL</span>
         </a>
+        <div onClick={toggleCart} className="absolute right-40 text-white p-[10px] rounded-full text-2xl hover:bg-white hover:text-blue-700 cursor-pointer">
+          <FaShoppingCart />
+        </div>
         <button
           id="dropdownUserAvatarButton"
           onClick={toggleDropdown}
@@ -97,13 +125,64 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
             <li>
               <a href="/hotels" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Hotels</a>
             </li>
-            {userRole === 'Admin' && (
+            {userRole === "Admin" && (
               <li>
                 <a href="/admin" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Dashboard</a>
               </li>
             )}
           </ul>
         </div>
+        {isCartVisible && (
+          <>
+            <div className="fixed inset-0 bg-black opacity-50 z-20" onClick={toggleCart} />
+            <div
+              className={isAnimatingOut
+                ? "bg-white w-[30%] z-30 rounded-l-lg fixed -right-28 top-0 min-h-screen slide-right"
+                : "bg-white w-[30%] z-30 rounded-l-lg fixed -right-28 top-0 min-h-screen slide-left"
+              }>
+              <div className="border-b-2">
+                <button onClick={toggleCart} className="absolute top-8 right-10 text-gray-700 text-3xl hover:text-gray-500">
+                  <IoCloseCircleOutline />
+                </button>
+                <h3 className="p-6 text-grey-700 text-3xl">Your Cart</h3>
+              </div>
+              <ul>
+                <p className="text-gray-500 text-center text-lg">{cartItems.length == 0 ? "empty cart :(" : ""}</p>
+                {cartItems.map(item => (
+                  <li key={item.roomId} className="flex p-3 bg-gray-100 border-b-2">
+                    <img src={item.roomPhotoUrl} alt="room photo" className="m-1 h-20 w-24 rounded-lg" />
+                    <div className="ml-2">
+                      <div>
+                        <p>Room Number: {item.roomNumber}</p>
+                        <p>Room Price: {item.price}$ per a night</p>
+                      </div>
+                      <div className="flex justify-evenly mt-2">
+                        <button
+                          onClick={() => {
+                            removeFromCart(item.roomId);
+                            toast.warn("Removed Successfully", {
+                              position: "top-center",
+                            });
+                          }}
+                          className="underline hover:text-red-600"
+                        >
+                          Remove
+                        </button>
+                        <button onClick={handleBuyNow} className="underline hover:text-green-600">Buy Now</button>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={clearCart}
+                className="absolute right-36 bottom-9 items-center px-12 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+              >
+                Clear Cart
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </nav>
   );

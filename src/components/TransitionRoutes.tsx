@@ -16,6 +16,7 @@ import {
   GetStartedPage,
 } from "../pages/index";
 import Navbar from "./Navbar";
+import { CartProvider } from "../context/CartContext";
 
 const TransitionRoutes = () => {
   const location = useLocation();
@@ -39,7 +40,7 @@ const TransitionRoutes = () => {
   };
 
   return (
-    <>
+    <CartProvider>
       <ToastContainer position="top-center" />
       {userIn && <Navbar userIn={userIn} setUserIn={setUserIn} userRole={userRole} setUserRole={setUserRole} />}
       <TransitionGroup>
@@ -62,7 +63,7 @@ const TransitionRoutes = () => {
           </Routes>
         </CSSTransition>
       </TransitionGroup>
-    </>
+    </CartProvider>
   )
 }
 
