@@ -18,6 +18,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCartItems((prevItems) => [...prevItems, item]);
   };
 
+  const isInCart = (roomId: number) => {
+    return cartItems.some(item => item.roomId === roomId);
+  };
+
+
   const removeFromCart = (itemId: number) => {
     setCartItems((prevItems) => prevItems.filter(item => item.roomId !== itemId));
   };
@@ -27,7 +32,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, isInCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

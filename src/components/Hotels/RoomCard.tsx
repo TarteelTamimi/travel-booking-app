@@ -9,18 +9,21 @@ import { toast } from "react-toastify";
 const RoomCard = (props: RoomModel) => {
   const { roomId, roomNumber, roomType, roomPhotoUrl, price, capacityOfAdults, capacityOfChildren, roomAmenities, availability } = props;
   const navigate = useNavigate();
-  const { addToCart, removeFromCart } = useCart();
+  const { addToCart, isInCart, removeFromCart } = useCart();
 
   const handleBuyNow = () => {
     navigate("/checkout");
   }
 
-  const handleAddToCart = () => {
-    addToCart(props);
-    toast.success("Added Successfully", {
-      position: "top-center",
-    });
-  }
+  const handleCartAction = () => {
+    if (isInCart(roomId)) {
+      removeFromCart(roomId);
+      toast.success("Removed Successfully", { position: "top-center" });
+    } else {
+      addToCart(props);
+      toast.success("Added Successfully", { position: "top-center" });
+    }
+  };
 
   return (
     <div className="relative flex flex-col w-5/6 h-[360px] mb-5 bg-white border border-gray-200 rounded-lg shadow md:flex-row">
@@ -66,10 +69,10 @@ const RoomCard = (props: RoomModel) => {
             Buy Now
           </button>
           <button
-            onClick={handleAddToCart}
-            className="absolute bottom-5 right-36 inline-flex items-center px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+            onClick={handleCartAction}
+            className="absolute bottom-5 right-36 items-center min-w-44 px-3 py-2 text-lg font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
           >
-            Add To Cart
+            {isInCart(roomId) ? "Remove From Cart" : "Add To Cart"}
           </button>
         </div>
       )}
