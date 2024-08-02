@@ -5,21 +5,41 @@ import { IoLocationOutline } from "react-icons/io5";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
 
 const SearchBox = () => {
   const { cities } = useFetchCities();
   const [filteredCities, setFilteredCities] = useState<CityModel[]>(cities);
-  const [inputValue, setInputValue] = useState<string>("");
-  const [showList, setShowList] = useState<boolean>(false);
   const [startDate, setStartDate] = useState(new Date());
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   const [endDate, setEndDate] = useState(tomorrow);
+  const [city, setCity] = useState<string>("");
+  const [numberOfAdults, setNumberOfAdults] = useState<number>(2);
+  const [numberOfChildren, setNumberOfChildren] = useState<number>(0);
+  const [numberOfRooms, setNumberOfRooms] = useState<number>(1);
+  const [showList, setShowList] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setInputValue(value);
+    setCity(value);
     setFilteredCities(cities.filter(city => city.name.toLowerCase().includes(value.toLowerCase())));
+  };
+
+  const handleNumberOfAdultsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.target.value);
+    setNumberOfAdults(value);
+  };
+
+  const handleNumberOfChildrenChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.target.value);
+    setNumberOfChildren(value);
+  };
+
+  const handleNumberOfRoomsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.target.value);
+    setNumberOfRooms(value);
   };
 
   const handleFocus = () => {
@@ -32,9 +52,21 @@ const SearchBox = () => {
   };
 
   const handleCityClick = (city: CityModel) => {
-    setInputValue(city.name);
+    setCity(city.name);
     setShowList(false);
   };
+
+  const handleSearch = () => {
+    const data = {
+      city: city,
+      numberOfAdults: numberOfAdults,
+      numberOfChildren: numberOfChildren,
+      numberOfRooms: numberOfRooms,
+      startDate: startDate,
+      endDate: endDate
+    }
+    navigate("/search-results", { state: data })
+  }
 
   return (
     <div className="bg-blue-700 w-[89%] min-h-24 rounded-lg absolute top-28 flex justify-evenly items-center p-2">
@@ -44,8 +76,8 @@ const SearchBox = () => {
           <IoLocationOutline className="text-white text-[36px] pt-2 pl-2" />
           <input
             type="text"
-            value={inputValue}
-            onChange={handleInputChange}
+            value={city}
+            onChange={handleCityChange}
             onFocus={handleFocus}
             onBlur={handleBlur}
             className="relative text-white w-32 bg-blue-700 focus:outline-none font-medium rounded-lg text-lg py-2 ml-3 inline-flex items-center placeholder-gray-400"
@@ -99,18 +131,35 @@ const SearchBox = () => {
       <div>
         <div className="m-2">
           <label htmlFor="numberOfAdults" className="text-white mr-[22px]">Number Of Adults:</label>
-          <input type="number" min="0" className="pl-2 outline-blue-700 rounded-lg" />
+          <input
+            type="number"
+            min="0"
+            defaultValue="2"
+            onChange={handleNumberOfAdultsChange}
+            className="pl-2 outline-blue-700 rounded-lg" />
         </div>
         <div className="m-2">
           <label htmlFor="numberOfChildren" className="text-white mr-2">Number Of Children:</label>
-          <input type="number" min="0" className="pl-2 outline-blue-700 rounded-lg" />
+          <input
+            type="number"
+            min="0"
+            defaultValue="0"
+            onChange={handleNumberOfChildrenChange}
+            className="pl-2 outline-blue-700 rounded-lg" />
         </div>
         <div className="m-2">
           <label htmlFor="numberOfRooms" className="text-white mr-[18px]">Number Of Rooms:</label>
-          <input type="number" min="1" className="pl-2 outline-blue-700 rounded-lg" />
+          <input
+            type="number"
+            min="1"
+            defaultValue="1"
+            onChange={handleNumberOfRoomsChange}
+            className="pl-2 outline-blue-700 rounded-lg" />
         </div>
       </div>
-      <button className="border-2 border-white bg-white w-32 text-blue-700 text-center focus:outline-none rounded-lg text-lg font-bold py-2 items-center placeholder-gray-400 hover:bg-gray-200">
+      <button
+        onClick={handleSearch}
+        className="border-2 border-white bg-white w-32 text-blue-700 text-center focus:outline-none rounded-lg text-lg font-bold py-2 items-center placeholder-gray-400 hover:bg-gray-200">
         Search
       </button>
     </div>

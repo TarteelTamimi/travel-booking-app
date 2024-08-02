@@ -5,13 +5,19 @@ import { UserInPropsModel } from "../models/UserProps";
 import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { useFetchHotels } from "../hooks/useFetchHotels.hook";
+import { HotelModel } from "../models/Hotel";
 
 const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isCartVisible, setIsCartVisible] = useState(false);
-  const navigate = useNavigate();
   const { cartItems, removeFromCart, clearCart } = useCart();
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+  const { hotels } = useFetchHotels();
+  const [filteredHotels, setFilteredHotels] = useState<HotelModel[]>(hotels);
+  const [showList, setShowList] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string>("");
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownVisible(!isDropdownVisible);
@@ -46,6 +52,27 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
   const handleBuyNow = () => {
     navigate("/checkout");
   }
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setInputValue(value);
+    setFilteredHotels(hotels.filter(hotel => hotel.name.toLowerCase().includes(value.toLowerCase())));
+  };
+
+  const handleFocus = () => {
+    setFilteredHotels(hotels);
+    setShowList(true);
+  };
+
+  const handleBlur = () => {
+    setTimeout(() => setShowList(false), 1000);
+  };
+
+  const handleHotelClick = (hotel: HotelModel) => {
+    setInputValue(hotel.name);
+    setShowList(false);
+    navigate(`/hotels/${hotel.id}`)
+  };
 
   return (
     <nav className="bg-blue-700 border-gray-200">
@@ -100,7 +127,15 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
               </svg>
               <span className="sr-only">Search icon</span>
             </div>
-            <input type="text" id="search-navbar" className="block w-full p-2 ps-10 text-l text-gray-900 border-blue-700 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-blue-700" placeholder="Search..." />
+            <input
+              type="text"
+              id="search-navbar"
+              value={inputValue}
+              onChange={handleInputChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className="block w-full p-2 ps-10 text-l text-gray-900 border-blue-700 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-blue-700"
+              placeholder="Search For Hotels..." />
           </div>
           <button data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-white hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-search" aria-expanded="false">
             <span className="sr-only">Open main menu</span>
@@ -116,8 +151,30 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
               </svg>
             </div>
-            <input type="text" id="search-navbar" className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." />
+            <input
+              type="text"
+              id="search-navbar"
+              className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." />
           </div>
+          {showList && (
+            <div className="absolute top-[60px] right-44 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-96">
+              <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+                {filteredHotels.length
+                  ? (filteredHotels.slice(0, 5).map((hotel: HotelModel) => (
+                    <li
+                      key={hotel.id}
+                      onClick={() => handleHotelClick(hotel)}
+                      className="flex px-4 py-2 hover:bg-gray-100 hover:cursor-pointer border-b"
+                    >
+                      <img src="https://cdne-hotel-reservation-webapi-dev-001.azureedge.net/web/Plaza%20Hotel.jpg" alt="room photo" className="m-1 h-20 w-24 rounded-lg" />
+                      <p className="m-3 text-lg">{hotel.name}</p>
+                    </li>
+                  )))
+                  : (<p className="px-4 py-2 text-gray-500">No result</p>)
+                }
+              </ul>
+            </div>
+          )}
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-blue-700 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-blue-700">
             <li>
               <a href="/home" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Home</a>
@@ -160,7 +217,7 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
                         <button
                           onClick={() => {
                             removeFromCart(item.roomId);
-                            toast.warn("Removed Successfully", {
+                            toast.success("Removed Successfully", {
                               position: "top-center",
                             });
                           }}
