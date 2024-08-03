@@ -7,7 +7,7 @@ import RoomCard from "../components/Hotels/RoomCard";
 const SearchResultsPage = () => {
   const location = useLocation();
   const { startDate, endDate, numberOfAdults, numberOfChildren } = location.state || {};
-  const { rooms, error } = useFetchRooms(1, startDate, endDate);
+  const { rooms, loading, error } = useFetchRooms(1, startDate, endDate);
 
   const filteredRooms = rooms.filter((room: RoomModel) => {
     const matchesAdults = room.capacityOfAdults >= numberOfAdults;
@@ -16,11 +16,15 @@ const SearchResultsPage = () => {
     return matchesAdults && matchesChildren;
   });
 
+  if (loading) {
+    return <span className="hotel-page-loader"></span>
+  }
+
   return (
     <>
       <h2 className="font-bold text-3xl m-10">Your Search Result:</h2>
       {error ? (
-        <div className="absolute bottom-40 left-1/3 flex justify-center items-center text-red-600">
+        <div className="absolute top-60 left-[650px] flex justify-center items-center text-red-600">
           <FiAlertTriangle />
           <span className="pl-2">Failed to fetch rooms</span>
         </div>
