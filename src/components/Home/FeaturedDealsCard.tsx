@@ -36,7 +36,7 @@ const FeaturedDealsCard = (props: FeaturedDealsModel) => {
           <p className="text-red-600 text-xl line-through">{originalRoomPrice}$</p>
         </div>
         <a href="#" onClick={handleBuyNow} className="absolute bottom-7 right-6 inline-flex items-center px-3 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-          Buy Now
+          Book Now
         </a>
       </div>
     </div>

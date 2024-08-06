@@ -225,7 +225,7 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
                         >
                           Remove
                         </button>
-                        <button onClick={handleBuyNow} className="underline hover:text-green-600">Buy Now</button>
+                        <button onClick={handleBuyNow} className="underline hover:text-green-600">Book Now</button>
                       </div>
                     </div>
                   </li>

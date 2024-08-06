@@ -23,7 +23,7 @@ const SetMapCenter = ({ latitude, longitude }: { latitude: number, longitude: nu
 };
 
 const Map = (props: HotelModel) => {
-  const { latitude, longitude } = props;
+  const { hotelName, latitude, longitude } = props;
 
   return (
     <div className="border border-gray-700 h-[200px] w-80 rounded-lg m-2">
@@ -35,7 +35,7 @@ const Map = (props: HotelModel) => {
         />
         <Marker position={[latitude, longitude]}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            {hotelName}
           </Popup>
         </Marker>
       </MapContainer>
