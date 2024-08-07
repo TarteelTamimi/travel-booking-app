@@ -5,15 +5,21 @@ import { PaymentFormValues } from "../models/paymentFormValues";
 import { useNavigate } from "react-router-dom";
 import { paymentFormSchema } from "../schemas/paymentFormSchema";
 
-const PaymentForm = () => {
+interface PaymentFormProps {
+  roomNumber: string;
+  roomType: string;
+  price: number;
+}
+
+const PaymentForm: React.FC<PaymentFormProps> = ({ roomNumber, roomType, price }) => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const onSubmit = (values: PaymentFormValues, actions: FormikHelpers<PaymentFormValues>) => {
     setLoading(true);
     try {
       actions.resetForm();
-      navigate("/confirmation", { state: values });
+      navigate("/confirmation", { state: { ...values, roomNumber, roomType, price } });
       toast.success("Payed Successfully", {
         position: "top-center",
       });

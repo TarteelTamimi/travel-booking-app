@@ -3,12 +3,12 @@ import PaymentForm from "../components/PaymentForm";
 
 const CheckoutPage = () => {
   const location = useLocation();
-  const { roomNumber, roomType, roomPhotoUrl, price, capacityOfAdults, capacityOfChildren } = location.state || {};
+  const { roomNumber, roomType, roomPhotoUrl, price, capacityOfAdults, capacityOfChildren } = location.state || {}; 
 
   return (
     <div>
       <h1 className="text-4xl font-bold text-center m-5">Payment Information</h1>
-      <PaymentForm />
+      <PaymentForm roomNumber={roomNumber} roomType={roomType} price={price}/>
       <div>
         <p className="text-3xl m-2 p-5 text-center">Confirm your room reservation by entering your payment details.</p>
         <div className="w-[45%] m-5 flex">
@@ -36,7 +36,6 @@ const CheckoutPage = () => {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   )
