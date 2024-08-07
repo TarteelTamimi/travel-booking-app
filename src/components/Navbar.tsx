@@ -7,6 +7,7 @@ import { useCart } from "../context/CartContext";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { useFetchHotels } from "../hooks/useFetchHotels.hook";
 import { HotelModel } from "../models/Hotel";
+import { RoomModel } from "../models/Room";
 
 const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }) => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -49,8 +50,8 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
     });
   }
 
-  const handleBuyNow = () => {
-    navigate("/checkout");
+  const handleBookNow = (room: RoomModel) => {
+    navigate("/checkout", {state: room});
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -225,7 +226,7 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
                         >
                           Remove
                         </button>
-                        <button onClick={handleBuyNow} className="underline hover:text-green-600">Book Now</button>
+                        <button onClick={() => handleBookNow(item)} className="underline hover:text-green-600">Book Now</button>
                       </div>
                     </div>
                   </li>

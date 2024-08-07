@@ -12,7 +12,7 @@ const RoomCard = (props: RoomModel) => {
   const { addToCart, isInCart, removeFromCart } = useCart();
 
   const handleBuyNow = () => {
-    navigate("/checkout");
+    navigate("/checkout", {state: props});
   }
 
   const handleCartAction = () => {

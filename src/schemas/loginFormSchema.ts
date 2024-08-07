@@ -8,10 +8,10 @@ export const loginFormSchema = yup.object().shape({
     .string()
     .matches(usernameRules, "Username can only contain alphanumeric characters")
     .min(3, "Username must be at least 3 characters long")
-    .required("Username is required"),
+    .required("Required"),
   password: yup
     .string()
     .min(3)
-    .matches(passwordRules, { "message": "Please create a stronger password" })
+    .matches(passwordRules, "Please create a stronger password")
     .required("Required"),
 });
