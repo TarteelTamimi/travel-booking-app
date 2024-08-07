@@ -50,10 +50,10 @@ const LoginForm: React.FC<UserInPropsModel> = ({ setUserIn, setUserRole }) => {
   });
 
   return (
-    <div className="w-full max-w-md p-4 bg-none border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
+    <div className="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="username" className="block mb-2 text-sm font-medium text-white">Your username</label>
+          <label htmlFor="username" className="block mb-2 text-sm font-medium text-black">Your username</label>
           <input
             value={values.username}
             onChange={handleChange}
@@ -71,7 +71,7 @@ const LoginForm: React.FC<UserInPropsModel> = ({ setUserIn, setUserRole }) => {
           {errors.username && touched.username && <p className="error text-red-600 font-bold text-xs pt-1">{errors.username}</p>}
         </div>
         <div>
-          <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Your password</label>
+          <label htmlFor="password" className="block mb-2 text-sm font-medium text-black">Your password</label>
           <input
             value={values.password}
             onChange={handleChange}
