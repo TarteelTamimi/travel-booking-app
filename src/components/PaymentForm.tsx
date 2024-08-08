@@ -4,22 +4,26 @@ import { useState } from "react";
 import { PaymentFormValues } from "../models/paymentFormValues";
 import { useNavigate } from "react-router-dom";
 import { paymentFormSchema } from "../schemas/paymentFormSchema";
+import { useCart } from "../context/CartContext";
 
 interface PaymentFormProps {
+  roomId: number;
   roomNumber: string;
   roomType: string;
   price: number;
 }
 
-const PaymentForm: React.FC<PaymentFormProps> = ({ roomNumber, roomType, price }) => {
+const PaymentForm: React.FC<PaymentFormProps> = ({ roomId, roomNumber, roomType, price }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
+  const { removeFromCart } = useCart();
 
   const onSubmit = (values: PaymentFormValues, actions: FormikHelpers<PaymentFormValues>) => {
     setLoading(true);
     try {
       actions.resetForm();
       navigate("/confirmation", { state: { ...values, roomNumber, roomType, price } });
+      removeFromCart(roomId);
       toast.success("Payed Successfully", {
         position: "top-center",
       });
