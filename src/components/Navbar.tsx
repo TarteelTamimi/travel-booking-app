@@ -194,27 +194,36 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
           <>
             <div className="fixed inset-0 bg-black opacity-50 z-20" onClick={toggleCart} />
             <div
-              className={isAnimatingOut
-                ? "bg-white w-[30%] z-30 rounded-l-lg fixed -right-28 top-0 min-h-screen slide-right"
-                : "bg-white w-[30%] z-30 rounded-l-lg fixed -right-28 top-0 min-h-screen slide-left"
-              }>
-              <div className="border-b-2">
-                <button onClick={toggleCart} className="absolute top-8 right-10 text-gray-700 text-3xl hover:text-gray-500">
+              className={
+                isAnimatingOut
+                  ? "bg-white w-[90%] sm:w-[70%] lg:w-[30%] z-30 rounded-l-lg fixed -right-28 top-0 min-h-screen slide-right"
+                  : "bg-white w-[90%] sm:w-[70%] lg:w-[30%] z-30 rounded-l-lg fixed -right-28 top-0 min-h-screen slide-left"
+              }
+            >
+              <div className="border-b-2 relative">
+                <button
+                  onClick={toggleCart}
+                  className="absolute top-4 right-4 text-gray-700 text-2xl sm:text-3xl hover:text-gray-500"
+                >
                   <IoCloseCircleOutline />
                 </button>
-                <h3 className="p-6 text-grey-700 text-3xl">Your Cart</h3>
+                <h3 className="p-4 sm:p-6 text-gray-700 text-xl sm:text-3xl">Your Cart</h3>
               </div>
-              <ul>
-                <p className="text-gray-500 text-center text-lg">{cartItems.length == 0 ? "empty cart :(" : ""}</p>
+              <ul className="p-4">
+                <p className="text-gray-500 text-center text-lg">
+                  {cartItems.length === 0 ? "Empty cart :(" : ""}
+                </p>
                 {cartItems.map(item => (
-                  <li key={item.roomId} className="flex p-3 bg-gray-100 border-b-2">
-                    <img src={item.roomPhotoUrl} alt="room photo" className="m-1 h-20 w-24 rounded-lg" />
-                    <div className="ml-2">
-                      <div>
-                        <p>Room Number: {item.roomNumber}</p>
-                        <p>Room Price: {item.price}$ per a night</p>
-                      </div>
-                      <div className="flex justify-evenly mt-2">
+                  <li key={item.roomId} className="flex flex-col sm:flex-row p-3 bg-gray-100 border-b-2">
+                    <img
+                      src={item.roomPhotoUrl}
+                      alt="room photo"
+                      className="m-1 h-20 w-full sm:w-24 sm:h-20 rounded-lg object-cover"
+                    />
+                    <div className="ml-0 sm:ml-2 mt-2 sm:mt-0">
+                      <p>Room Number: {item.roomNumber}</p>
+                      <p>Room Price: {item.price}$ per night</p>
+                      <div className="flex flex-col sm:flex-row justify-between mt-2">
                         <button
                           onClick={() => {
                             removeFromCart(item.roomId);
@@ -226,7 +235,12 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
                         >
                           Remove
                         </button>
-                        <button onClick={() => handleBookNow(item)} className="underline hover:text-green-600">Book Now</button>
+                        <button
+                          onClick={() => handleBookNow(item)}
+                          className="underline hover:text-green-600 mt-2 sm:mt-0"
+                        >
+                          Book Now
+                        </button>
                       </div>
                     </div>
                   </li>
@@ -234,12 +248,13 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
               </ul>
               <button
                 onClick={clearCart}
-                className="absolute right-36 bottom-9 items-center px-12 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                className="absolute bottom-4 right-4 sm:bottom-9 sm:right-36 px-8 py-2 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
               >
                 Clear Cart
               </button>
             </div>
           </>
+
         )}
       </div>
     </nav>

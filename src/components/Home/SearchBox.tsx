@@ -69,8 +69,8 @@ const SearchBox = () => {
   }
 
   return (
-    <div className="bg-blue-700 p-4 rounded-lg flex flex-wrap gap-4 items-center justify-center w-full">
-      <div className="flex flex-col flex-1 min-w-[200px]">
+    <div className="bg-blue-700 p-4 rounded-lg flex flex-wrap gap-4 items-center justify-evenly w-full">
+      <div className="flex flex-col flex-1 max-w-[180px]">
         <label htmlFor="city" className="text-white mb-1">Location:</label>
         <div className="relative flex items-center border-2 border-white rounded-lg">
           <IoLocationOutline className="text-white text-3xl m-1" />
@@ -104,7 +104,7 @@ const SearchBox = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-col flex-1 min-w-[200px]">
+      <div className="flex flex-col flex-1 max-w-[180px]">
         <label htmlFor="startDate" className="text-white mb-1">From:</label>
         <div className="relative flex items-center border-2 border-white rounded-lg">
           <CgCalendarDates className="text-white text-3xl m-1" />
@@ -116,7 +116,7 @@ const SearchBox = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col flex-1 min-w-[200px]">
+      <div className="flex flex-col flex-1 max-w-[180px]">
         <label htmlFor="endDate" className="text-white mb-1">To:</label>
         <div className="relative flex items-center border-2 border-white rounded-lg">
           <CgCalendarDates className="text-white text-3xl m-1" />
@@ -129,7 +129,7 @@ const SearchBox = () => {
         </div>
       </div>
       <div className="flex flex-col">
-        <div className="flex flex-col flex-1 min-w-[200px]">
+        <div className="flex flex-col flex-1 max-w-[180px]">
           <label htmlFor="numberOfAdults" className="text-white mb-1">Number Of Adults:</label>
           <input
             type="number"
