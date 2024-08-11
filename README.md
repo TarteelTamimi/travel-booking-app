@@ -2,7 +2,6 @@
 This platform is the perfect solution for booking hotels quickly and easily. The platform provides access to a wide range of top-notch hotels worldwide, with detailed information, and competitive prices. Through a user-friendly interface, you can find the ideal hotel based on your specific needs, from convenient locations to budget-friendly options. Enjoy your stay with quality guarantees, secure booking, and 24/7 support for a hassle-free experience. Our platform makes traveling easier, more comfortable, and more enjoyable!
 
 👉[Poduction version of app](https://travel-booking-application.netlify.app/)
--------------------------------------
 
 ## Let's take a tour🚀
 ### 1. Get Started Page:
@@ -112,6 +111,9 @@ You can enter the platform under two roles, either a regular user or an admin.
 12. React-to-print: for payment confirmaton print option.
 13. Jspdf: for payment confirmaton save as PDF option.
 
-## Installation⚙️
+## Installation and Run⚙️
+To get our platform on you disk, folw these steps:
+1. Clone the repo
+`git clone 
 
 
