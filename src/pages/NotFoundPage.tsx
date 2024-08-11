@@ -4,7 +4,7 @@ import notFound from "../assets/undraw_page_not_found_re_e9o6.svg";
 const NotFoundPage = () => {
 
   return (
-    <div className="absolute top-40 left-[500px] flex">
+    <div className="flex justify-center items-center mt-10">
       <div className="flex flex-col">
         <div className="flex flex-col items-center">
           <img src={notFound} alt="not found" width={500} height={500} />

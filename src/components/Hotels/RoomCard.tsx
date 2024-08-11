@@ -26,12 +26,12 @@ const RoomCard = (props: RoomModel) => {
   };
 
   return (
-    <div className="relative flex flex-col w-5/6 h-[360px] mb-5 bg-white border border-gray-200 rounded-lg shadow md:flex-row">
+    <div className="relative flex flex-col w-5/6 h-[360px] mb-5 bg-white border border-gray-200 rounded-lg shadow md:flex-row max-[1050px]:w-full max-[1050px]:h-[50rem]">
       <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-72 md:rounded-none md:rounded-s-lg" src={roomPhotoUrl} alt="room photo" />
       <div className="flex flex-col px-4 leading-normal">
         <div className="flex items-center space-x-20 pt-5 mb-3 pl-0 text-xl font-bold">
           <h3 className="ml-2 text-black text-3xl">{roomNumber}</h3>
-          <p className={availability ? "font-normal text-green-600" : "font-normal text-red-600"}>
+          <p className={availability ? "font-normal text-green-600" : "font-normal text-red-600"}> 
             {availability ? "Available" : "Not Available"}
           </p>
         </div>
@@ -70,7 +70,7 @@ const RoomCard = (props: RoomModel) => {
           </button>
           <button
             onClick={handleCartAction}
-            className="absolute bottom-5 right-36 items-center min-w-44 px-3 py-2 text-lg font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+            className="absolute bottom-5 right-36 items-center min-w-44 px-3 py-2 text-lg font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 max-[1050px]:min-w-32 max-[1050px]:text-base max-[1050px]:py-[10px]"
           >
             {isInCart(roomId) ? "Remove From Cart" : "Add To Cart"}
           </button>

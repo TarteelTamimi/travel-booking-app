@@ -11,12 +11,12 @@ const CheckoutPage = () => {
       <PaymentForm roomId={roomId} roomNumber={roomNumber} roomType={roomType} price={price}/>
       <div>
         <p className="text-3xl m-2 p-5 text-center">Confirm your room reservation by entering your payment details.</p>
-        <div className="w-[45%] m-5 flex">
+        <div className="w-[45%] m-5 flex max-[1050px]:w-full max-[1050px]:flex-col max-[1050px]:text-center">
           <img className="m-3 rounded-lg h-96 md:h-auto md:w-72 md:rounded-lg" src={roomPhotoUrl} alt="room photo" />
-          <div className="text-gray-500 m-3 w-1/2">
+          <div className="text-gray-500 w-1/2">
             <div className="flex">
               <p className="w-11/12">Room Number:</p>
-              <p className="border-2">{roomNumber}</p>
+              <p>{roomNumber}</p>
             </div>
             <div className="flex">
               <p className="w-11/12">Room Type:</p>

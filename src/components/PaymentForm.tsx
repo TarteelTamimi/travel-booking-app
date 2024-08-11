@@ -52,7 +52,7 @@ const PaymentForm: React.FC<PaymentFormProps> = ({ roomId, roomNumber, roomType,
     onSubmit,
   });
   return (
-    <div className="w-1/2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 float-end mx-5">
+    <div className="w-1/2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 float-end mx-5 max-[1050px]:w-full max-[1050px]:float-none">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="flex items-center">
           <label htmlFor="fullName" className="block w-1/3 mb-2 text-sm font-medium mr-3 text-gray-500">Your Full Name:</label>

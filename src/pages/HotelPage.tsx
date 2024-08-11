@@ -30,9 +30,9 @@ const HotelPage = () => {
   }, [id])
 
   return (
-    <div className="flex">
+    <div className="flex max-[1050px]:flex-col">
       <HotelInfo {...hotel} />
-      <div className="flex flex-col w-[70%] h-full">
+      <div className="flex flex-col w-[70%] h-full max-[1050px]:w-full">
         <HotelGallery />
         <div className="flex flex-col w-full">
           <h2 className="m-5 text-3xl">Rooms:</h2>

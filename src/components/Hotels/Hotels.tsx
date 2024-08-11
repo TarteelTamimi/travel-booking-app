@@ -46,7 +46,7 @@ const Hotels = () => {
           {isSorted ? "Sorted By:  Star Rating" : "Sorted By:  Default"}
         </button>
       </div>
-      <div className="ml-20 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="m-2 grid grid-cols-1 md:grid-cols-2 gap-4">
         {displayedHotels.map((hotel: HotelModel) => (
           <div key={hotel.id}>
             <HotelCard {...hotel} />
