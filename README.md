@@ -113,7 +113,14 @@ You can enter the platform under two roles, either a regular user or an admin.
 
 ## Installation and Run⚙️
 To get our platform on you disk, folw these steps:
-1. Clone the repo
-`git clone 
+1. Clone the repo:
+   `git clone https://github.com/TarteelTamimi/travel-booking-app.git`
 
+3. Install the dependancies:
+   `npm install`
 
+5. run the app:
+   `npm run dev`
+
+## Acknowledgement🤝
+This app is the end result of a 6 month Front End training with [Foothill](https://www.foothillsolutions.com/), All thanks and appreciation for their efforts.
