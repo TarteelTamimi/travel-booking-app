@@ -12,15 +12,15 @@ This platform is the perfect solution for booking hotels quickly and easily. The
 ![image](https://github.com/user-attachments/assets/9fea5ff3-3f4b-4551-901d-94dd13a8e052)
 You can enter the platform under two roles, either a regular user or an admin.
 + User
-- username: user
-- password: user
+  - username: user
+  - password: user
 + Admin
-- username: admin
-- password: admin
+  - username: admin
+  - password: admin
 
 ### 3. Home Page:
 ![image](https://github.com/user-attachments/assets/ff01d317-e703-4473-a57b-b690c91e6fde)
-### **3.1 Robust Search Functionality**
+### 3.1 Robust Search Functionality
 
 - Central search bar with the placeholder: "Search for hotels..."
 - Interactive calendar for selecting check-in and check-out dates, auto-set to today and tomorrow.
@@ -37,6 +37,30 @@ You can enter the platform under two roles, either a regular user or an admin.
 
 - A personalized display of the last 3-5 hotels the user visited.
 - Details like thumbnail image, hotel name, city, star rating, and pricing information are included.
+
+### 2.4 Trending Destination Highlights
+
+- A curated list of popular cities, each with a visually appealing thumbnail and city name.
+
+### 4. Hotel Page:
+![image](https://github.com/user-attachments/assets/c9146018-c464-4dfa-abce-59e845bf5bc7)
+![image](https://github.com/user-attachments/assets/1c0e6804-b5c7-4455-a6e3-6ba9902779d0)
+
+
+### 4.1 Visual Gallery
+
+- High-quality images of the hotel, viewable in fullscreen mode.
+
+### 4.2 Detailed Hotel Information
+
+- Hotel name, star rating, description or history.
+- An interactive map showing the hotel's location with nearby attractions.
+
+### 4.3 Room Availability and Selection
+
+- List of different room types with images, descriptions, and prices.
+- "Add to cart" option for easy booking.
+
 
 
 
