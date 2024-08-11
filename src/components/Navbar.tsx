@@ -51,7 +51,7 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
   }
 
   const handleBookNow = (room: RoomModel) => {
-    navigate("/checkout", {state: room});
+    navigate("/checkout", { state: room });
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +76,7 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
   };
 
   return (
-    <nav className="bg-blue-700 border-gray-200">
+    <nav className="bg-blue-700 border-gray-200 w-full">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pr-40">
         <a href="/home" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://img.icons8.com/?size=100&id=10860&format=png&color=FFFFFF" className="h-8" alt="Flowbite Logo" />

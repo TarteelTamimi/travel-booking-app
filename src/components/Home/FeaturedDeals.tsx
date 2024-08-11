@@ -15,27 +15,57 @@ const FeaturedDeals = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+    ],
   };
 
   return (
     <>
-      {
-        error
-          ? <div className='flex justify-center items-center text-red-600'>
-            <FiAlertTriangle />
-            <span className="pl-2">Failed to fetch Features Deals</span>
+      {error ? (
+        <div className="flex justify-center items-center text-red-600">
+          <FiAlertTriangle />
+          <span className="pl-2">Failed to fetch Features Deals</span>
+        </div>
+      ) : (
+        <>
+          <div className="hidden md:block">
+            <Slider {...sliderSettings}>
+              {featuredDeals.map((deal: FeaturedDealsModel) => (
+                <div key={deal.hotelId}>
+                  <FeaturedDealsCard {...deal} />
+                </div>
+              ))}
+            </Slider>
           </div>
-
-          : (<Slider {...sliderSettings} >
+          <div className="md:hidden flex flex-col">
             {featuredDeals.map((deal: FeaturedDealsModel) => (
               <div key={deal.hotelId}>
                 <FeaturedDealsCard {...deal} />
               </div>
             ))}
-          </Slider>)
-      }
+          </div>
+        </>
+      )}
     </>
-  )
-}
+  );
+};
 
 export default FeaturedDeals;

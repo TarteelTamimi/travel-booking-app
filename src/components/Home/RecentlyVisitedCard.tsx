@@ -13,7 +13,7 @@ const RecentlyVisitedCard = (props: RecentlyVisitedModel) => {
   }
 
   return (
-    <div onClick={handleCardClick} className="relative w-10/12 border h-[440px] rounded-2xl bg-white cursor-pointer shadow">
+    <div onClick={handleCardClick} className="relative w-full sm:w-10/12 md:w-9/12 lg:w-10/12 xl:w-8/12 border h-[440px] rounded-2xl bg-white cursor-pointer shadow mb-5">
       <img className="rounded-t-2xl w-full h-[220px]" src={thumbnailUrl} alt="Room Photo" />
       <div className="p-5">
         <h5 className="pl-1 text-2xl font-bold tracking-tight text-gray-900">{hotelName}</h5>
