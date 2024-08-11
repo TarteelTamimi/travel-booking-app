@@ -89,14 +89,29 @@ You can enter the platform under two roles, either a regular user or an admin.
 
 #### 6.3 Detailed Grids
 
-- Cities: Name, description and delete option.
-- Hotels: Name, describtion, star rate and delete option.
-- Rooms: Number, type, price and delete option.
+- Cities: Name, description, delete and edit options.
+- Hotels: Name, describtion, star rate, delete and edit options.
+- Rooms: Number, type, price, delete and edit options.
 
 #### 6.4 Create Button
 
 - Opens a form for creating Cities, Hotels, or Rooms.
 
+## Used Technologies💻
+1. React: as a framework to build the application.
+2. Typescript: strong typed language to creatr types for our entities.
+3. Tailwind: for styling the app.
+4. React-router-dom: for routing.
+5. Axios: for dealing with HTTP requests.
+6. Formik: for forms.
+7. Yup: to add alidation for the forms.
+8. React-icons: for using icons.
+9. React-leaflet: for interactive maps.
+10. moment: for dates validations.
+11. React-toastify: for toasts.
+12. React-to-print: for payment confirmaton print option.
+13. Jspdf: for payment confirmaton save as PDF option.
 
+## Installation⚙️
 
 
