@@ -76,5 +76,27 @@ You can enter the platform under two roles, either a regular user or an admin.
 - Shows booking details like confirmation number, hotel address, room details, dates, and total price.
 - Options to print or save the confirmation as a PDF.
 
+### 6. Admin Page:
+![image](https://github.com/user-attachments/assets/aaaffab9-9bd7-4cc3-8bd8-cd416a84f938)
+
+#### 6.1 Functional Left Navigation
+
+- Collapsible navigator with links to Cities, Hotels, and Rooms.
+
+#### 6.2 Admin Search Bar
+
+- Filters for the grids.
+
+#### 6.3 Detailed Grids
+
+- Cities: Name, description and delete option.
+- Hotels: Name, describtion, star rate and delete option.
+- Rooms: Number, type, price and delete option.
+
+#### 6.4 Create Button
+
+- Opens a form for creating Cities, Hotels, or Rooms.
+
+
 
 
