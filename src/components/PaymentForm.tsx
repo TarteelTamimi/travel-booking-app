@@ -1,7 +1,7 @@
 import { FormikHelpers, useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { PaymentFormValues } from "../models/paymentFormValues";
+import { PaymentFormValues } from "../models/PaymentFormValues";
 import { useNavigate } from "react-router-dom";
 import { paymentFormSchema } from "../schemas/paymentFormSchema";
 import { useCart } from "../context/CartContext";

@@ -4,6 +4,7 @@ import { CityModel } from "../models/City";
 
 export const useFetchCities = () => {
   const [cities, setCities] = useState<CityModel[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
@@ -13,11 +14,13 @@ export const useFetchCities = () => {
         setCities(data);
       } catch (error) {
         setError(true);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchCities();
   }, []);
 
-  return { cities, error };
+  return { cities, loading, error };
 }
