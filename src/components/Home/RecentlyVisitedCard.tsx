@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { RecentlyVisitedModel } from "../../models/RecentlyVisited";
 import { IoLocationOutline } from "react-icons/io5";
-import moment from "moment";
+import { dateFormatter } from "../../utils";
 
 const RecentlyVisitedCard = (props: RecentlyVisitedModel) => {
   const { hotelId, hotelName, cityName, starRating, visitDate, thumbnailUrl } = props;
   const navigate = useNavigate();
-  const formattedDate = moment(visitDate).format('YYYY-MM-DD');
+  const formattedDate = dateFormatter(visitDate);
 
   const handleCardClick = () => {
     navigate(`/hotels/${hotelId}`);

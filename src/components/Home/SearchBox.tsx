@@ -6,13 +6,14 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CgCalendarDates } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
+import { addDays } from "date-fns";
 
 const SearchBox = () => {
   const { cities } = useFetchCities();
   const [filteredCities, setFilteredCities] = useState<CityModel[]>(cities);
-  const [startDate, setStartDate] = useState(new Date());
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
+  const date = new Date();
+  const [startDate, setStartDate] = useState(date);
+  const tomorrow = addDays(date, 1);
   const [endDate, setEndDate] = useState(tomorrow);
   const [city, setCity] = useState<string>("");
   const [numberOfAdults, setNumberOfAdults] = useState<number>(2);
