@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserInPropsModel } from "../models/UserProps";
 import { FaShoppingCart } from "react-icons/fa";
@@ -78,10 +78,10 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
   return (
     <nav className="bg-blue-700 border-gray-200 w-full">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 pr-40">
-        <a href="/home" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <NavLink to="/home" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://img.icons8.com/?size=100&id=10860&format=png&color=FFFFFF" className="h-8" alt="Flowbite Logo" />
           <span className="self-center text-white text-2xl font-semibold whitespace-nowrap">HOTEL</span>
-        </a>
+        </NavLink>
         <div onClick={toggleCart} className="absolute right-40 text-white p-[10px] rounded-full text-2xl hover:bg-white hover:text-blue-700 cursor-pointer">
           <FaShoppingCart />
         </div>
@@ -103,10 +103,10 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
             </div>
             <ul className="py-2 text-sm text-gray-700" aria-labelledby="dropdownUserAvatarButton">
               <li>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Profile</a>
+                <NavLink to="#" className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Profile</NavLink>
               </li>
               <li>
-                <a href="#" className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Settings</a>
+                <NavLink to="#" className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">Settings</NavLink>
               </li>
             </ul>
             <div className="py-2">
@@ -178,14 +178,14 @@ const Navbar: React.FC<UserInPropsModel> = ({ setUserIn, userRole, setUserRole }
           )}
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-blue-700 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-blue-700">
             <li>
-              <a href="/home" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Home</a>
+              <NavLink to="/home" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Home</NavLink>
             </li>
             <li>
-              <a href="/hotels" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Hotels</a>
+              <NavLink to="/hotels" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Hotels</NavLink>
             </li>
             {userRole === "Admin" && (
               <li>
-                <a href="/admin" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Dashboard</a>
+                <NavLink to="/admin" className="text-xl block py-2 px-3 text-white rounded-lg hover:bg-gray-100 md:hover:bg-white md:hover:text-blue-700 md:p-2">Dashboard</NavLink>
               </li>
             )}
           </ul>

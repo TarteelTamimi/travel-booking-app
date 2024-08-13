@@ -48,7 +48,6 @@ const Cities = () => {
 
   const handleAddCity = () => {
     if (newCityName.trim() === "" || newCityDescription.trim() === "") {
-      alert("Please fill out both fields.");
       return;
     }
 
